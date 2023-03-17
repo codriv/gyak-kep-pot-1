@@ -14,5 +14,5 @@ public class HospitalDto {
 
     private Long id;
     private String hospitalName;
-    private List<Patient> patients;
+    private List<PatientDto> patients;
 }
