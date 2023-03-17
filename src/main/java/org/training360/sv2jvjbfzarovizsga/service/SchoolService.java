@@ -32,7 +32,9 @@ public class SchoolService {
     }
 
     public SchoolDto createSchool(CreateSchoolCommand command) {
-        Address address = new Address(command.getPostalCode(), command.getCity(), command.getStreet(), command.getHouseNumber());
+//        Address address = new Address(command.getPostalCode(), command.getCity(), command.getStreet(), command.getHouseNumber());
+//        With Modelmapper: Attributes that do not exist in Address class, will be ignored.
+        Address address = modelMapper.map(command, Address.class);
         School school = new School(command.getSchoolName(), address);
         schoolRepository.save(school);
         return modelMapper.map(school, SchoolDto.class);
@@ -62,7 +64,8 @@ public class SchoolService {
     public SchoolDto studentOff(Long id, Long stdId) {
         School school = findSchoolById(id);
         Student student = findStudentById(stdId);
-        if (!school.getStudents().contains(student)) {
+//        if (!school.getStudents().contains(student)) {
+        if (studentRepository.findByIdAndSchoolId(stdId, id).isEmpty()) {
             throw new EntityNotFoundException("Student", stdId);
         } else {
             school.removeStudent(student);
