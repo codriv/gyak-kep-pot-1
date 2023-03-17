@@ -3,7 +3,6 @@ package org.training360.sv2jvjbfzarovizsga.dto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.training360.sv2jvjbfzarovizsga.dto.StudentDto;
 import org.training360.sv2jvjbfzarovizsga.model.Address;
 
 import java.util.List;
